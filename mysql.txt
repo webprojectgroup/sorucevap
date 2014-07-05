@@ -13,7 +13,13 @@ SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi ORDER BY kolon_ismi66 DESC -son
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi ORDER BY kolon_ismi66 DESC LIMIT 1 - ile kolon_ismi66 değeri en yüksek sonucu alabiliriz.
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55=bir_değer - belirtilen kolonlardan sadece kolon_ismi55 teki değeri bi_değer e eşit olanları seçer.
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 != bir_değer - belirtilen kolonlardan sadece kolon_ismi55 teki değeri bi_değerden farklı olanları seçer. ayrıca > ve < smbolleri de geçerlidir.
-
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 BETWEEN 12 AND 33 - belirtilen kolonlardan sadece kolon_ismi55 teki değeri 12 ve 33 arasında olanları seçer sayı değeri yerine text kullanacaksak tek tırnak içinde kullanmalıyız ki komutlarla karışmasın
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55='asdf' AND kolon_ismi77=1234  -belirtilen kolonlardan sadece kolon_ismi55 teki değeri asdf ve kolon_ismi77 deki değeri 1234 olanları seçer. AND yerine OR kullanılabilir.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 IN ('a' , 'b', 'c') -degerleri a b c olanları seçilir. 
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 NOT IN ('a' , 'b', 'c') -degerleri a b c dışındakiler olanları seçilir.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 LIKE 'asdf%' -kolon_ismi55 teki değeri asdf ile başlayanlar seçilir. % asdf nin önünde de 
+kullanılablir; anlamı içinde asdf geçen anlamına gelir. ortada kullanılırsa mesela as%df gibi o zamanda as ile başlayıp df ile biten anlamına gelir. Ayrıca % sembolü yerine _ sembolü de aynı şekilde kullanılabilir ancak _ sembolü bir karakter anlamına gelir.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP  'ali' - içinde ali geçenleri seçer. ali yerine .ali kullanılırsa bir karakterden sonra gelen anlamına gelir.
 
 
 
