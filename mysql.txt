@@ -1,0 +1,20 @@
+SHOW DATABASES - databaseleri görüntüler.
+SHOW TABLES    - o database deki tablo ları görüntüler.
+SHOW COLUMNS FROM tablo_ismi  - o tablo daki kolonları görüntüler
+SELECT kolon_ismi FROM tablo_ismi -o tablodaki o kolonu seçer
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi - iki kolonu birden seçer. hepsi için wildcard ( * ) kullanılabilir.
+SELECT DISTINCT kolon_ismi FROM tablo_ismi  - tekrarlayan sonuçlar atılır.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi LIMIT 5 -sonuclar ilk 5 ile (kolon_ismi1 deki değere göre) sınırlanır.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi LIMIT 5,10 -  6,7,8,9,10...15 inci sonuclar (kolon_ismi2 deki değere göre) döner. 
+SELECT kolon_ismi1.tablo_ismi FROM tablo_ismi - SELECT kolon_ismi1 FROM tablo_ismi ile aynı sonuçları dönderir ancak karışıklığı önlemek için (örn aynı kolon ismine sahip 2 ayrı tablo varsa) kullanılır. bu yöntemdeki kolon_ismi1.tablo_ismi Fully qualified name olarak adlandırılır.
+SELECT kolon_ismi1 FROM tablo_ismi ORDER BY kolon_ismi66 - sonuçlar kolon_ismi66 ya göre  sıralanır.
+SELECT kolon_ismi1 FROM tablo_ismi ORDER BY kolon_ismi66 , kolon_ismi77 - sonuçlar önce kolon_ismi66 ya sonra kolon_ismi77 ye göre  sıralanır.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi ORDER BY kolon_ismi66 DESC -sonuçlar kolon_ismi66 ya göre azalan (sondan başa ) sıralanır
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi ORDER BY kolon_ismi66 DESC LIMIT 1 - ile kolon_ismi66 değeri en yüksek sonucu alabiliriz.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55=bir_değer - belirtilen kolonlardan sadece kolon_ismi55 teki değeri bi_değer e eşit olanları seçer.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 != bir_değer - belirtilen kolonlardan sadece kolon_ismi55 teki değeri bi_değerden farklı olanları seçer. ayrıca > ve < smbolleri de geçerlidir.
+
+
+
+
+
