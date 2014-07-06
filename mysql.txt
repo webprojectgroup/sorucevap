@@ -19,8 +19,17 @@ SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 IN ('a' , 'b
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 NOT IN ('a' , 'b', 'c') -degerleri a b c dýþýndakiler olanlarý seçilir.
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 LIKE 'asdf%' -kolon_ismi55 teki deðeri asdf ile baþlayanlar seçilir. % asdf nin önünde de 
 kullanýlablir; anlamý içinde asdf geçen anlamýna gelir. ortada kullanýlýrsa mesela as%df gibi o zamanda as ile baþlayýp df ile biten anlamýna gelir. Ayrýca % sembolü yerine _ sembolü de ayný þekilde kullanýlabilir ancak _ sembolü bir karakter anlamýna gelir.
-SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP  'ali' - içinde ali geçenleri seçer. ali yerine .ali kullanýlýrsa bir karakterden sonra gelen anlamýna gelir.
-
-
-
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP  'ali' - içinde ali geçenleri seçer. ali yerine .ali kullanýlýrsa bir karakterden sonra gelen anlamýna gelir. ali|veli kullanýlýrsa içinde ali ya da veli geçen anlamýna gelir.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP '[12345678] tane ali' - dersek 1 ali yada 2 ali yada ... ali geçenleri seçer. [^12345678] dersek bunlar haricindekiler anlamýna gelir. [1-5] 12345 anlamýna gelir.
+SELECT CONCAT(kolon_ismi1 , ',' , kolon_ismi55) FROM kolon_ismi66 - kolon_ismi1,kolon_ismi55 þeklinde bir çýktý oluþur.
+SELECT CONCAT(kolon_ismi1 , ',' , kolon_ismi55) AS yeni_kolon FROM kolon_ismi66 - üsttekiyle ayný çýktý oluþur oluþan kolon yeni_kolon olarak adlandýrýlmýþ olur.
+SELECT kolon_ismi1 , kolon_ismi2 , kolon_ismi-1 AS indirimli_fiyat FROM tablo_ismi - kolon_ismi1,kolon_ismi2 ve indirimli_fiyat olarak adlandýrýlýan kolon_ismi ndeki deðerlerin 1 eksiði seçilmiþ olur.
+SELECT UPPER(kolon_ismi1) FROM tablo_ismi - UPPER fonksiyonu aldýðý kolondaki içeriði büyük harfe dönüþtürür.
+					    SQRT(kolon_ismi) fonksiyonu aldýðý kolondaki içeriðin karekökünü alýr.
+					    AVG(kolon_ismi) fonksiyonu aldýðý kolondaki içeriðin ortalamasýný alýr. aggregate (toplam) türü bir fonsiyondur ve bu tür foksiyonlar tek sonuç dönderir.
+					    SUM(kolon_ismi) fonksiyonu aldýðý kolondaki içeriðin toplamýný dönderir. aggregate (toplam) türü bir fonsiyondur ve bu tür foksiyonlar tek sonuç dönderir.
+					    COUNT(kolon_ismi) bir kolondaki tüm satýrlarý sayar. örn SELECT COUNT(urun) FROM satici WHERE satici_id=5433
+					    MAX(kolon_ismi) aldýðý kolondaki en büyük deðeri döndürür. AS falanca_max olarak adlandýrýlabilir.
+					    
+SELECT satici_id , COUNT(*) AS urun_sayisi FROM GROUP BY satici_id - her satici için urun sayýsýna göre gruplama yapar.
 
