@@ -13,23 +13,45 @@ SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi ORDER BY kolon_ismi66 DESC -son
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi ORDER BY kolon_ismi66 DESC LIMIT 1 - ile kolon_ismi66 değeri en yüksek sonucu alabiliriz.
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55=bir_değer - belirtilen kolonlardan sadece kolon_ismi55 teki değeri bi_değer e eşit olanları seçer.
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 != bir_değer - belirtilen kolonlardan sadece kolon_ismi55 teki değeri bi_değerden farklı olanları seçer. ayrıca > ve < smbolleri de geçerlidir.
+
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 BETWEEN 12 AND 33 - belirtilen kolonlardan sadece kolon_ismi55 teki değeri 12 ve 33 arasında olanları seçer sayı değeri yerine text kullanacaksak tek tırnak içinde kullanmalıyız ki komutlarla karışmasın
-SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55='asdf' AND kolon_ismi77=1234  -belirtilen kolonlardan sadece kolon_ismi55 teki değeri asdf ve kolon_ismi77 deki değeri 1234 olanları seçer. AND yerine OR kullanılabilir.
-SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 IN ('a' , 'b', 'c') -degerleri a b c olanları seçilir. 
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55='asdf' AND kolon_ismi77=1234 -belirtilen kolonlardan sadece kolon_ismi55 teki değeri asdf ve kolon_ismi77 deki değeri 1234 olanları seçer. AND yerine OR kullanılabilir.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 IN ('a' , 'b', 'c') -degerleri a b c olanları seçilir.
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 NOT IN ('a' , 'b', 'c') -degerleri a b c dışındakiler olanları seçilir.
-SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 LIKE 'asdf%' -kolon_ismi55 teki değeri asdf ile başlayanlar seçilir. % asdf nin önünde de 
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 LIKE 'asdf%' -kolon_ismi55 teki değeri asdf ile başlayanlar seçilir. % asdf nin önönde de
 kullanılablir; anlamı içinde asdf geçen anlamına gelir. ortada kullanılırsa mesela as%df gibi o zamanda as ile başlayıp df ile biten anlamına gelir. Ayrıca % sembolü yerine _ sembolü de aynı şekilde kullanılabilir ancak _ sembolü bir karakter anlamına gelir.
-SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP  'ali' - içinde ali geçenleri seçer. ali yerine .ali kullanılırsa bir karakterden sonra gelen anlamına gelir. ali|veli kullanılırsa içinde ali ya da veli geçen anlamına gelir.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP 'ali' - içinde ali geçenleri seçer. ali yerine .ali kullanılırsa bir karakterden sonra gelen anlamına gelir.
+SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP 'ali' - içinde ali geçenleri seçer. ali yerine .ali kullanılırsa bir karakterden sonra gelen anlamına gelir. ali|veli kullanılırsa içinde ali ya da veli geçen anlamına gelir.
 SELECT kolon_ismi1 , kolon_ismi2 FROM tablo_ismi WHERE kolon_ismi55 REGEXP '[12345678] tane ali' - dersek 1 ali yada 2 ali yada ... ali geçenleri seçer. [^12345678] dersek bunlar haricindekiler anlamına gelir. [1-5] 12345 anlamına gelir.
 SELECT CONCAT(kolon_ismi1 , ',' , kolon_ismi55) FROM kolon_ismi66 - kolon_ismi1,kolon_ismi55 şeklinde bir çıktı oluşur.
 SELECT CONCAT(kolon_ismi1 , ',' , kolon_ismi55) AS yeni_kolon FROM kolon_ismi66 - üsttekiyle aynı çıktı oluşur oluşan kolon yeni_kolon olarak adlandırılmış olur.
 SELECT kolon_ismi1 , kolon_ismi2 , kolon_ismi-1 AS indirimli_fiyat FROM tablo_ismi - kolon_ismi1,kolon_ismi2 ve indirimli_fiyat olarak adlandırılıan kolon_ismi ndeki değerlerin 1 eksiği seçilmiş olur.
 SELECT UPPER(kolon_ismi1) FROM tablo_ismi - UPPER fonksiyonu aldığı kolondaki içeriği büyük harfe dönüştürür.
-					    SQRT(kolon_ismi) fonksiyonu aldığı kolondaki içeriğin karekökünü alır.
+					    SQRT(kolon_ismi) fonksiyonu aldığı kolondaki içriğin karekökünü alır.
 					    AVG(kolon_ismi) fonksiyonu aldığı kolondaki içeriğin ortalamasını alır. aggregate (toplam) türü bir fonsiyondur ve bu tür foksiyonlar tek sonuç dönderir.
 					    SUM(kolon_ismi) fonksiyonu aldığı kolondaki içeriğin toplamını dönderir. aggregate (toplam) türü bir fonsiyondur ve bu tür foksiyonlar tek sonuç dönderir.
 					    COUNT(kolon_ismi) bir kolondaki tüm satırları sayar. örn SELECT COUNT(urun) FROM satici WHERE satici_id=5433
 					    MAX(kolon_ismi) aldığı kolondaki en büyük değeri döndürür. AS falanca_max olarak adlandırılabilir.
-					    
+
 SELECT satici_id , COUNT(*) AS urun_sayisi FROM GROUP BY satici_id - her satici için urun sayısına göre gruplama yapar.
 
+ALTER TABLE tablo_ismi ADD FULLTEXT(text_iceren_kolon_ismi) -ile text search özelliğini text içiren bir kolonda aktif ediyoruz.
+SELECT kolon_ismi1,kolon_ismi2 FROM tablo_ismi WHERE Match(arama_yapılacak_seacrh_aktif_kolon) Against('aranacak_text') -ile arama aktif kolonda arama yapıyoruz. Bu diğer yöntemlerden hızlıdır ve ranking (sonuçları arama kriterine uygunluğa göre sıralama) özelliği bulunur.
+SELECT kolon_ismi1,kolon_ismi2 FROM tablo_ismi WHERE Match(arama_yapılacak_seacrh_aktif_kolon) Against('+aranacak_text -istenmeyen_text' IN BOOLEAN MODE) - +ile sonuçlarda olması, - ile olmaması gereken text belirtilir daha farklı operatörler de vardır. operatörleri kullanmak için IN BOOLEAN MODE eklenmelidir.
+INSERT INTO tablo_ismi VALUES('kolon1e_girilecek_deger','kolon2e_girilecek_deger','kolon3e_girilecek_deger','kolon4e_girilecek_deger') - kolon sırası korunarak tabloya satır ekleme
+INSERT INTO tablo_ismi(kolonismi66,kolon_ismi1,kolon_ismi55,kolon_ismi77) VALUES ('66ya_girilecek_değer','1e','55e','77ye')- bu şekilde kendi belirttiğimiz sırayla(NULL geçersizse boş bırakmamak kaydıyla) girebiliriz.
+INSERT INTO tablo_ismi(kolonismi66,kolon_ismi1,kolon_ismi55,kolon_ismi77) VALUES ('66ya_girilecek_değer','1e','55e','77ye'), ('66ya_girilecek_değer','1e','55e','77ye') -ile tek seferde birden fazla satır eklenebilir.
+UPDATE tablo_ismi SET degistirilecek_kolon1='eskisiyle_degisecek_deger' , degistirilecek_kolon2='eskisiyle_degisecek_deger' WHERE id=123 - id kolonu 123 değerine eşit olan satırdaki değeri güncelleme
+DELETE FROM tablo_ismi WHERE id =1234 -idsi 1234 olan satırı silme
+CREATE TABLE tablo_ismi (kolon_ismi1 bu_kolonun_data_tipi , id_kolunu int(11) NOT NULL AUTO_INCREMENT ,kolon_ismi3 tip(boyut) NOT NULL , PRIMARY KEY (id_kolunu)  ) -id_kolonu primary key olacak,auto increment olacak ve kolon_ismi3 ve id_kolonu boş olmayacak şekilde bir tablo oluşturma
+ALTER TABLE ekstra_kolon_eklenecek_tablo ADD yeni_kolon data_tipi(uzunluk) - varolan bir tabloya satır ekleme
+ALTER TABLE kolon_silinecek_tablo DROP COLUMN silinecek_kolon_ismi - varolan bir tablodan satır silme
+DROP TABLE silinecek_tablo_ismi -bir tabloyu tamamen silme
+RENAME TABLE eski_tablo_ismi TO yeni_tablo_ismi -tablo ismini değiştirme
+CREATE VIEW gecici_tablo_ismi AS SELECT kolon_ismi2,kolon_ismi55 FROM tablo_ismi ORDER BY kolon_ismi77 DESC LIMIT 10 -kolon1 ve 55 teki bilgileri 77 ye göre sıralayarak gecici_tablo_ismi isminde gecici bir tablo oluşturma. Bu yöntem veriyi kendiliğinden güncelleyerek bir yerlerde kullanmak için güzeldir.
+SELECT Concat(kolon_ismi2,','kolon_ismi55) AS gecici_isim FROM tablo_ismi- 2 ve 55 teki verileri aralarına virgül koyarak birleştirip gecici_isim kolonunda görme
+CREATE VIEW koyulacak_kolon_ismi AS SELECT Concat(kolon_ismi2,','kolon_ismi55) AS gecici_isim FROM tablo_ismi- 2 ve 55 teki verileri aralarına virgül koyarak birleştirip koyulacak_kolon_ismi kolonu şeklindegörme VIEW geçici bir sistem olsa da SELECT vs kullanabiliriz.
+
+SELECT i.seller_id, i.name, c.id FROM customers AS c,items AS i WHERE i.seller_id=c.id -tabloya geçici nickname vererek kullanma
+SELECT customers.name , items.name FROM customers , items WHERE customers.id=seller_id -satıcıları ürünleriyle görme
+SELECT customers.name , items.name FROM customers LEFT OUTER JOIN items ON customers.id=seller_id -satıcıları (ürün satmayanlar da dahil) ürünleriyle görme ON: WHERE gibi kullanıldı LEFT : soldaki tüm satırlar sonuçta olsun demek
