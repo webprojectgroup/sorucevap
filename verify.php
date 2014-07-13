@@ -1,4 +1,7 @@
+ <html>
+<body>
  <?php
+ 
 if(isset($_POST['submit'])){
     $dbHost = "localhost";        //Location Of Database usually its localhost
     $dbUser = "root";            //Database User Name
@@ -18,13 +21,17 @@ if(isset($_POST['submit'])){
     //Choose some sort of password encryption, I choose sha256
     //Password function (Not In all versions of MySQL).
     $usr = mysqli_real_escape_string($db,$_POST['username']);
-    $pas = hash('sha256', mysqli_real_escape_string($db,$_POST['password']));
-    $sql = mysqli_query($db,"SELECT * FROM deneme 
+    $pas = hash('md5', mysqli_real_escape_string($db,$_POST['password']));
+    $sql = mysqli_query($db,"SELECT uye_adi,ad,soyad,sifre FROM deneme 
         WHERE uye_adi='$usr' AND
-        sifre='PASSWORD($pas)'
+        sifre='$pas'
         LIMIT 1");
+
+
+        
     if(mysqli_num_rows($sql) == 1){
-        $row = mysqli_fetch_array($db,$sql);
+        $row = mysqli_fetch_array($sql);
+  
         session_start();
         $_SESSION['username'] = $row['uye_adi'];
         $_SESSION['fname'] = $row['ad'];
@@ -41,3 +48,6 @@ if(isset($_POST['submit'])){
     exit;
 }
 ?> 
+
+</body>
+</html>

@@ -50,7 +50,7 @@ if(isset($_POST['submit'])){
         # create a session, and session variables,
 
         $query = sprintf("INSERT INTO deneme (uye_adi,ad,soyad,eposta,sifre)
-            VALUES('%s','%s','%s','%s',PASSWORD('%s'))",
+            VALUES('%s','%s','%s','%s',MD5('%s'))",
             mysqli_real_escape_string($db_connection_state,$_POST['user_name']),
             mysqli_real_escape_string($db_connection_state,$_POST['fname']),
             mysqli_real_escape_string($db_connection_state,$_POST['lname']),
