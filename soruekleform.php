@@ -1,7 +1,7 @@
 <html>
 <body>
 
-<form action="sorudbe.php" method="post">
+<form action="soruEkle.php" method="post">
 	Soru Metni:<br />  		<textarea name="soru_texti" rows="13" cols="44"  > </textarea><br /><br />
 	
 	   				<input type="radio" name="sec" value=1 /> 
@@ -29,7 +29,7 @@
 					</select> 
 	
 	sorunun kategorisi:		<select name="kategori">
-						<option value="mat">Matematik</option>
+						<option selected value="mat">Matematik</option>
 						<option value="fen">Fen</option>
 						<option value="kim">Kimya</option>
 						<option value="biy">Biyoloji</option>

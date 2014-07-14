@@ -24,11 +24,11 @@ if(isset($_POST['submit'])){
     //Lets search the databse for the user name and password
     //Choose some sort of password encryption, I choose sha256
     //Password function (Not In all versions of MySQL).
-    $usr = mysqli_real_escape_string($db_baglanti_durumu,$_POST['uye_adi']);
-    $pas = hash('md5', mysqli_real_escape_string($db_baglanti_durumu,$_POST['password']));
-    $sql = mysqli_query($db_baglanti_durumu,"SELECT uye_adi,ad,soyad,sifre FROM deneme 
-        WHERE uye_adi='$usr' AND
-        sifre='$pas'
+    $uye_adi = mysqli_real_escape_string($db_baglanti_durumu,$_POST['uye_adi']);
+    $sif = hash('md5', mysqli_real_escape_string($db_baglanti_durumu,$_POST['sifre']));
+    $sql = mysqli_query($db_baglanti_durumu,"SELECT uye_adi,ad,soyad,sifre FROM Uyeler 
+        WHERE uye_adi='$uye_adi' AND
+        sifre='$sif'
         LIMIT 1");
 
 
@@ -38,8 +38,8 @@ if(isset($_POST['submit'])){
   
         session_start();
         $_SESSION['uye_adi'] = $row['uye_adi'];
-        $_SESSION['fname'] = $row['ad'];
-        $_SESSION['lname'] = $row['soyad'];
+        $_SESSION['ad'] = $row['ad'];
+        $_SESSION['soyad'] = $row['soyad'];
         $_SESSION['logged'] = TRUE;
         header("Location: userspage.php"); // Modify to go to the page you would like
         exit;
