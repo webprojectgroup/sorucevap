@@ -1,0 +1,2 @@
+//dogru yanlýs sorularýn belirtilip puan hesaplanmasi
+//sorularý uyenin puanlanmasý

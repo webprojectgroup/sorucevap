@@ -1,0 +1,3 @@
+// yeni eklenen sorularý onaylama gerekirse duzenleme
+// yeni uyeleri ve rollerini onaylama
+//ýstenen uyenýn rolunu degýstýrme veya askýya alma
