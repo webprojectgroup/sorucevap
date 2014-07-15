@@ -75,6 +75,8 @@ if(isset($error)){
     unset($error);
 }
 
+//üyeligin son adýmý olarak kullanýcýya dogrulama maili gönderme (rastgele fonksiyonla üretilen sayýnýn md5 hashinin alýnmasýyla oluþan string mailolarak gönderilecek)
+//mailden gelen hash ile onay kodu kýsmýndaki degerin hash kodunun karsýlastýrýlmasý ve ona gore kaydýn tamamlanmasý
 
 header("Location: kayitForm.php");
   ?>
