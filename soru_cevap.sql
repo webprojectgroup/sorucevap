@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2014 at 07:40 AM
+-- Generation Time: Jul 16, 2014 at 04:39 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -27,9 +27,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `rol` (
-  `id` int(11) NOT NULL,
-  `rol_ismi` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rol_ismi` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `id_2` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `rol`
@@ -48,11 +51,13 @@ INSERT INTO `rol` (`id`, `rol_ismi`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `secenekler` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `secenek` varchar(50) NOT NULL,
   `soru_fk` int(11) NOT NULL,
-  `dogru_mu` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `dogru_mu` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -67,8 +72,9 @@ CREATE TABLE IF NOT EXISTS `soru` (
   `soru_kategori_fk` int(2) NOT NULL,
   `ekleyen_fk` int(5) NOT NULL,
   `onay` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -77,9 +83,11 @@ CREATE TABLE IF NOT EXISTS `soru` (
 --
 
 CREATE TABLE IF NOT EXISTS `soru_kategorileri` (
-  `id` int(11) NOT NULL,
-  `kategori_ismi` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `kategori_ismi` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `soru_kategorileri`
@@ -87,10 +95,10 @@ CREATE TABLE IF NOT EXISTS `soru_kategorileri` (
 
 INSERT INTO `soru_kategorileri` (`id`, `kategori_ismi`) VALUES
 (1, 'mat'),
+(2, 'fen'),
 (3, 'kim'),
 (4, 'biy'),
-(5, 'tur'),
-(2, 'fen');
+(5, 'tur');
 
 -- --------------------------------------------------------
 
@@ -99,11 +107,13 @@ INSERT INTO `soru_kategorileri` (`id`, `kategori_ismi`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `soru_puan` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `soru_fk` int(11) NOT NULL,
   `begeni` tinyint(1) NOT NULL,
-  `oylayan_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `oylayan_fk` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -125,14 +135,15 @@ CREATE TABLE IF NOT EXISTS `uyeler` (
   `aktif_mi` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `uyeler`
 --
 
 INSERT INTO `uyeler` (`id`, `ad`, `soyad`, `uye_adi`, `eposta`, `dogum_tarihi`, `cep_tel`, `sifre`, `rol_fk`, `onay_kodu`, `aktif_mi`) VALUES
-(1, 'mustafa', 'iran', 'miran', 'm@ma.com', '0000-00-00', 9007788, '202cb962ac59075b964b07152d234b70', 1, 1521, 0);
+(1, 'mustafa', 'iran', 'miran', 'm@ma.com', '0000-00-00', 9007788, '202cb962ac59075b964b07152d234b70', 1, 1521, 0),
+(2, '2', '1', 'kkk', '1', '0000-00-00', 3, 'c9f0f895fb98ab9159f51fd0297e236d', 1, 30656, 0);
 
 -- --------------------------------------------------------
 
@@ -141,10 +152,12 @@ INSERT INTO `uyeler` (`id`, `ad`, `soyad`, `uye_adi`, `eposta`, `dogum_tarihi`, 
 --
 
 CREATE TABLE IF NOT EXISTS `uye_kategori` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `uye_fk` int(11) NOT NULL,
-  `kategori_fk` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kategori_fk` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -153,9 +166,11 @@ CREATE TABLE IF NOT EXISTS `uye_kategori` (
 --
 
 CREATE TABLE IF NOT EXISTS `zorluk_derecesi` (
-  `id` int(11) NOT NULL,
-  `zorluk` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `zorluk` int(2) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `zorluk_derecesi`
