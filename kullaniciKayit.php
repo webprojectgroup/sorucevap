@@ -63,6 +63,7 @@ if(isset($_POST['submit'])){
             
             )or die(mysqli_error());
         $sql = mysqli_query($db_baglanti_durumu,$query);
+        echo $query;
         # Redirect the user to a login page
         header("Location: login.php");
         exit;

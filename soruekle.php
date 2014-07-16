@@ -27,24 +27,18 @@ $ekleyen_fk=1;
 
 //$zorluk_derecesi_fk=$_SESSION['views'];
 
-/*  $sql = mysqli_query($db_baglanti_durumu,"SELECT uye_adi,ad,soyad,sifre FROM Uyeler 
-        WHERE uye_adi='$uye_adi' AND
-        sifre='$sif'
-        LIMIT 1");
-*/
-
 $gecici=0;
 $query=  "INSERT INTO soru(soru,ekleyen_fk,soru_kategori_fk,zorluk_derecesi_fk,onay) 
 		VALUES ('" .$soru_texti ."','" .$ekleyen_fk ."','" .$_POST['kategori']  ."','" .$gecici ."','" .$onay ."')";
 
 mysqli_query($db_baglanti_durumu,$query);
-		
-		
+
+echo "sorgu=" ."mysqli_query(SELECT id,soru FROM soru WHERE soru=".$soru_texti );
+//$row=mysqli_fetch_array(mysqli_query(SELECT id,soru FROM soru WHERE soru=$soru_texti ));
+
+
+	echo "sorunun idsi=" .$row['id'];			
 echo $query;
-
-//mysqli_query($db_baglanti_durumu,"INSERT INTO soru (id,soru,ekleyen_fk,soru_kategori_fk,zorluk_derecesi_fk,onay) 
-//		VALUES('$gecici','$soru_texti','$ekleyen_fk','$_POST['kategori']','$gecici,$onay')");
-
 
 //secenekler tablosuna
 //id
@@ -96,20 +90,17 @@ $dogru_mu5=1;
 break;
 }
 
-$query= "INSERT INTO secenekler(id,dogru_mu,secenek,soru_fk) 
-		    VALUES ('" .$gecici ."','" . $dogru_mu1 ."','" .$_POST['secenek1'] ."','" .$gecici ."'),
-		    ('" .$gecici ."','" . $dogru_mu2 ."','" .$_POST['secenek2'] ."','" .$gecici . "'),
-		    ('" .$gecici ."','" . $dogru_mu3 ."','" .$_POST['secenek3'] ."','" .$gecici ."'),
-		    ('" .$gecici ."','" . $dogru_mu4 ."','" .$_POST['secenek4'] ."','" .$gecici ."'),
-		    ('" .$gecici ."','" . $dogru_mu5 ."','" .$_POST['secenek5'] ."','" .$gecici ."');";
+$query= "INSERT INTO secenekler(dogru_mu,secenek,soru_fk) 
+	     VALUES ('" . $dogru_mu1 ."','" .$_POST['secenek1'] ."','" .$gecici ."'),
+		    ('" . $dogru_mu2 ."','" .$_POST['secenek2'] ."','" .$gecici ."'),
+		    ('" . $dogru_mu3 ."','" .$_POST['secenek3'] ."','" .$gecici ."'),
+		    ('" . $dogru_mu4 ."','" .$_POST['secenek4'] ."','" .$gecici ."'),
+		    ('" . $dogru_mu5 ."','" .$_POST['secenek5'] ."','" .$gecici ."');";
 mysqli_query($db_baglanti_durumu,$query);
 
-//soru kategorileri tablosuna
+//soru kategorileri tablosundan
 //id
 //kategori_ismi
-//$query="INSERT INTO soru_kategorileri(id,kategori_ismi) 
-//		    VALUES ('','')";
-//mysqli_query($db_baglanti_durumu,$query);
-
+//cekilerek soru kategorisifk ona gore alýnýp id degeri oraya basýlacak
 
 ?>

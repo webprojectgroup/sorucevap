@@ -3,34 +3,15 @@
  <?php
  
 if(isset($_POST['submit'])){
+//Connect to the databasse
     include("dbBaglan.php");
     
-    
-    /*
-    
-    $dbHost = "localhost";        //Location Of Database usually its localhost
-    $dbUser = "root";            //Database User Name
-    $dbPass = "";            //Database Password
-    $dbDatabase = "soru_cevap";    //Database Name
-    
-    $db = mysqli_connect($dbHost,$dbUser,$dbPass,$dbDatabase)or die("Error connecting to database."); */
-    //Connect to the databasse
-
-    
-    /*
-    The Above code can be in a different file, then you can place include'filename.php'; instead.
-    */
-    
     //Lets search the databse for the user name and password
-    //Choose some sort of password encryption, I choose sha256
-    //Password function (Not In all versions of MySQL).
+
     $uye_adi = mysqli_real_escape_string($db_baglanti_durumu,$_POST['uye_adi']);
     $sif = hash('md5', mysqli_real_escape_string($db_baglanti_durumu,$_POST['sifre']));
     $sql = mysqli_query($db_baglanti_durumu,"SELECT uye_adi,ad,soyad,sifre FROM Uyeler 
-        WHERE uye_adi='$uye_adi' AND
-        sifre='$sif'
-        LIMIT 1");
-
+        WHERE uye_adi='$uye_adi' AND sifre='$sif' LIMIT 1");
 
         
     if(mysqli_num_rows($sql) == 1){
