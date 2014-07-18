@@ -10,18 +10,21 @@ if(isset($_POST['submit'])){
 
     $uye_adi = mysqli_real_escape_string($db_baglanti_durumu,$_POST['uye_adi']);
     $sif = hash('md5', mysqli_real_escape_string($db_baglanti_durumu,$_POST['sifre']));
-    $sql = mysqli_query($db_baglanti_durumu,"SELECT uye_adi,ad,soyad,sifre FROM Uyeler 
+    $sql = mysqli_query($db_baglanti_durumu,"SELECT id,uye_adi,ad,soyad,sifre FROM Uyeler 
         WHERE uye_adi='$uye_adi' AND sifre='$sif' LIMIT 1");
 
         
     if(mysqli_num_rows($sql) == 1){
-        $row = mysqli_fetch_array($sql);
-  
+        $row = mysqli_fetch_array($sql); 
+ echo  "row id= ". $row['id'];
+ 
         session_start();
+        $_SESSION['uye_id'] = $row['id'];
         $_SESSION['uye_adi'] = $row['uye_adi'];
         $_SESSION['ad'] = $row['ad'];
         $_SESSION['soyad'] = $row['soyad'];
         $_SESSION['logged'] = TRUE;
+     echo  "SESSION uye_id="  .$_SESSION['uye_id'];
         header("Location: userspage.php"); // Modify to go to the page you would like
         exit;
     }else{

@@ -65,7 +65,7 @@ if(isset($_POST['submit'])){
         $sql = mysqli_query($db_baglanti_durumu,$query);
         echo $query;
         # Redirect the user to a login page
-        header("Location: login.php");
+        header("Location: loginSayfasi.php");
         exit;
     }
 }
