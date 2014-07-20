@@ -8,16 +8,27 @@ include("dbBaglan.php");
 $soruSayisi=$_POST['soruSayisi'];
 $zorluk=$_POST['zorluk'];
 $kategori=$_POST['kategori'];
-
+// aldýgý tablonýn o kolonundaki en büyük deðeri dondürecek fonksiyon
+/* 
 function en_buyuk_deger($db_baglanti_degiskeni,$tablo_ismi,$kolon_ismi){
 $sql = mysqli_query($db_baglanti_degiskeni,"SELECT $kolon_ismi FROM $tablo_ismi ORDER BY $kolon_ismi DESC LIMIT 1 ;");
 $satir = mysqli_fetch_array($sql); 
 $en_buyuk_deger=$satir['kolon_ismi'];
 
 }
-function arrayde_varmi($array, $aranacak_deger){}
-function bu_id_varmi($db_baglanti_degiskeni,$aranacak_deger,$tablo_ismi,$kolon_ismi){}
+*/
 
+//aldýgý arrayde belli bir deger var mý yok mu onu dondurecek fonksiyon
+/*
+function arrayde_varmi($array, $aranacak_deger){}
+*/
+
+//veritabanýnda verilen kolonda aranacak deger in olup olmadýgýný dondurecek fonksiyon
+/*
+function bu_id_varmi($db_baglanti_degiskeni,$aranacak_deger,$tablo_ismi,$kolon_ismi){} 
+*/
+
+// aþagýdaki kýsým fonksiyonlar hazýrlanýrken kullanýlabilir . Zaten buyuk oranda o kýsýmda sadece fonksiyon cagýrarak iþi halletmeye calýsacagýz.
 
 $i=1;
 
