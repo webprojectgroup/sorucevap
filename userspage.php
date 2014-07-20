@@ -6,4 +6,4 @@ if(!$_SESSION['logged']){
     exit;
 }
 echo 'Welcome, '.$_SESSION['uye_adi'];
-?> 
+?>
