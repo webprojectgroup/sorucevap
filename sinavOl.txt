@@ -1,4 +1,0 @@
-//kategori secimi
-//zorluk derecesi secimi
-//soru sayısı secimi
-//sürenin hesaplanması
