@@ -1,3 +1,3 @@
-// yeni eklenen soruları onaylama gerekirse duzenleme
+// yeni eklenen sorularÄ± onaylama gerekirse duzenleme
 // yeni uyeleri ve rollerini onaylama
-//ıstenen uyenın rolunu degıstırme veya askıya alma
+//Ä±stenen uyenÄ±n rolunu degÄ±stÄ±rme veya askÄ±ya alma

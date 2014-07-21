@@ -1,2 +1,2 @@
 //gerekli islem icin kullanici yetkilerini kontrol etme
-//yetkilere göre gelecek sayfayı (sıradan uye ya da admin paneli) ayarlama
+//yetkilere gÃ¶re gelecek sayfayÄ± (sÄ±radan uye ya da admin paneli) ayarlama

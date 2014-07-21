@@ -1,41 +1,42 @@
- <html>
-<body>
- <?php
- 
-if(isset($_POST['submit'])){
-//Connect to the databasse
-    include("dbBaglan.php");
-    
-    //Lets search the databse for the user name and password
+<html>
+    <body>
+        <?php
+        if (isset($_POST['submit'])) {
 
-    $uye_adi = mysqli_real_escape_string($db_baglanti_durumu,$_POST['uye_adi']);
-    $sif = hash('md5', mysqli_real_escape_string($db_baglanti_durumu,$_POST['sifre']));
-    $sql = mysqli_query($db_baglanti_durumu,"SELECT id,uye_adi,ad,soyad,sifre FROM Uyeler 
+            include("dbBaglan.php");
+
+            //veitabanında kullanıcıyı arama
+
+            $uye_adi = mysqli_real_escape_string($db_baglanti_durumu, $_POST['uye_adi']);
+            $sif = hash('md5', mysqli_real_escape_string($db_baglanti_durumu, $_POST['sifre']));
+            $sql = mysqli_query($db_baglanti_durumu, "SELECT id,uye_adi,ad,soyad,sifre FROM Uyeler 
         WHERE uye_adi='$uye_adi' AND sifre='$sif' LIMIT 1");
 
-        
-    if(mysqli_num_rows($sql) == 1){
-        $row = mysqli_fetch_array($sql); 
- echo  "row id= ". $row['id'];
- 
-        session_start();
-        $_SESSION['uye_id'] = $row['id'];
-        $_SESSION['uye_adi'] = $row['uye_adi'];
-        $_SESSION['ad'] = $row['ad'];
-        $_SESSION['soyad'] = $row['soyad'];
-        $_SESSION['logged'] = TRUE;
-     echo  "SESSION uye_id="  .$_SESSION['uye_id'];
-        header("Location: userspage.php"); // Modify to go to the page you would like
-        exit;
-    }else{
-        header("Location: loginSayfasi.php");
-        exit;
-    }
-}else{    //If the form button wasn't submitted go to the index page, or login page
-    header("Location: index.php");    
-    exit;
-}
-?> 
 
-</body>
+            if (mysqli_num_rows($sql) == 1) {
+                $satir = mysqli_fetch_array($sql);
+                
+
+                session_start();
+                $_SESSION['uye_id'] = $satir['id'];
+                $_SESSION['uye_adi'] = $satir['uye_adi'];
+                $_SESSION['ad'] = $satir['ad'];
+                $_SESSION['soyad'] = $satir['soyad'];
+                $_SESSION['logged'] = TRUE;
+                
+                header("Location: userspage.php"); 
+                exit;
+            } 
+            else {
+                header("Location: loginSayfasi.php");
+                exit;
+            }
+        } 
+        else {    //form butonuna basılmazsa
+            header("Location: index.php");
+            exit;
+        }
+        ?> 
+
+    </body>
 </html>

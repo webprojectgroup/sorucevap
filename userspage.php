@@ -1,9 +1,10 @@
 <?php
+
 echo "userspage ";
 session_start();
-if(!$_SESSION['logged']){
-   header("Location: loginSayfasi.php");
+if (!$_SESSION['logged']) {
+    header("Location: loginSayfasi.php");
     exit;
 }
-echo 'Welcome, '.$_SESSION['uye_adi'];
+echo 'Welcome, ' . $_SESSION['uye_adi'];
 ?>

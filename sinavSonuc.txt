@@ -1,2 +1,5 @@
-//dogru yanl�s sorular�n belirtilip puan hesaplanmasi
-//sorular� uyenin puanlanmas�
+//dogru yanlıs soruların belirtilip puan hesaplanmasi
+         //dogru soru numaralarını donduren fonksiyon
+         //yanlıs soru numaralarını donduren fonksıyon
+                //dogru soru sayısını donduren fonksiyon
+//soruları uyenin puanlanması
