@@ -6,7 +6,7 @@
             include("dbBaglan.php");
 
             //veitabanında kullanıcıyı arama
-
+            //kullanıcının aktif olup olmadıgının kotrolu eklenecek
             $uye_adi = mysqli_real_escape_string($db_baglanti_durumu, $_POST['uye_adi']);
             $sif = hash('md5', mysqli_real_escape_string($db_baglanti_durumu, $_POST['sifre']));
             $sql = mysqli_query($db_baglanti_durumu, "SELECT id,uye_adi,ad,soyad,sifre FROM Uyeler 
