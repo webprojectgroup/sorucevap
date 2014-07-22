@@ -1,3 +1,10 @@
 // yeni eklenen soruları onaylama gerekirse duzenleme
+//onay kolonu 0 olan soruları bul ekrana bas,form aracılıgıyla onayla sonraya ekrar bak ve sil seceneklerinden birini sec gerekli işlemleri yap
+
 // yeni uyeleri ve rollerini onaylama
+//kullanıcı kayıt sayfasından burayı tetiklemeliyiz.
+
+
 //ıstenen uyenın rolunu degıstırme veya askıya alma
+//kullanıcı ismine , adı soyadına göre arama yapıp sonuclar içinden gerekeni işaretleme secenegı sunacak, veritabanında gerekli yerler değiştirecek fonksiyon
+//arama bilgileri form ile alınacak , doldurulan kutulara göre arama yapacak, sonucları ekrana basıp tekrar secım yaptıracak.

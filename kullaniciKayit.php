@@ -1,6 +1,6 @@
 <html>
     <body>
-
+//üyenin kayıt tarihi de (üye onaylanınca) eklenecek
 
         <?php
         include("kayitForm.php");
