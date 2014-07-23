@@ -1,8 +1,6 @@
-<html>
-    <body>
-        <?php
+    <?php
         include("dbBaglan.php");
-
+/*
 
 
         $soruSayisi = $_POST['soruSayisi'];
@@ -86,8 +84,71 @@
         foreach (rastgele_id($db_baglanti_durumu, "soru", "id", 3) as $value) {
             echo " " . $value . " ";
         }
+ */
+        
+        
+ 
         //yukarıdaki satır döngü silinip sorular ve şıklar rastgele_idler arrayine göre çekilip ekrana bssılacak
         ?>
+       <?php function soru_bas($db,$soru_id){
+            
+            $sorgu1= "SELECT soru FROM soru WHERE id='".$soru_id."'";
+            $sonuc1= mysqli_query($db, $sorgu1);
+            $soru_satir= mysqli_fetch_array($sonuc1);
+            $soru=$soru_satir['soru'];
+            
+            
+            $sorgu2= "SELECT id,dogru_mu,secenek FROM secenekler WHERE soru_fk='".$soru_id."'" ;
+            $sonuc2= mysqli_query($db, $sorgu2);
+            $secenek_satir= mysqli_fetch_array($sonuc2);
+            
+            
+            $sorgu3= "SELECT AVG(begeni) FROM soru_puan WHERE soru_fk='".$soru_id."'";
+            $sonuc3= mysqli_query($db, $sorgu3);
+            $begeni_satir= mysqli_fetch_array($sonuc3);
+            $begeni=($begeni_satir[0]*100);
+            
+            //$sec1=;            $sec2=;            $sec3=;            $sec4=;            $sec5=;
+            //header("Location: soruformbas.php");
+            
+            ?>
+            
+        
 
-    </body>
-</html>
+     
+
+
+<form method="post">
+            Soru Metni:<?php echo "soru= ".$soru; ?><br/>
+
+             
+            secenek1:   				
+
+            <input type="radio" name="sec" value=1 /><?php echo " secenek_satir[secenek] =".$secenek_satir['secenek']; ?> <br/>
+            secenek2:   				
+
+            <input type="radio" name="sec" value=2 /><?php echo " secenek_satir[secenek] =".$secenek_satir['secenek']; ?> <br/>
+            secenek3:   				
+
+            <input type="radio" name="sec" value=3/><?php echo " secenek_satir[secenek] =".$secenek_satir['secenek']; ?>  <br/>
+            secenek4:  				
+
+            <input type="radio" name="sec" value=4 /> <?php echo " secenek_satir[secenek] =".$secenek_satir['secenek']; ?> <br/>
+            secenek5:   				
+
+            <input type="radio" name="sec" selected value=5 /><?php echo " secenek_satir[secenek] =".$secenek_satir['secenek']; 
+            
+           echo " begeni=% ".$begeni; ?> <br/>
+
+
+            <input type="submit" name="submit" value="Kaydet" />
+</form>
+
+            
+            
+        <?php    
+        }
+        
+        soru_bas($db_baglanti_durumu,'1');
+        
+        ?>
