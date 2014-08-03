@@ -6,7 +6,7 @@
         <a href="index.php">phpmyadmin
         </a><br/>
         <a href="soruekleform.php"><p size=5>soruekleform.php </p></a><br/>
-
+        <a href="yoneticiSayfasi.php"><p size=5>yoneticiSayfasi.php </p></a><br/>
         <a href="sinavOlForm.php"><p size=5>sinavol form.php </p></a><br/>
 
         <a href="sinavOl.php"><p size=5>sinav ol </p></a><br/>

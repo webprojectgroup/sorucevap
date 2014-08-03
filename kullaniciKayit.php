@@ -1,6 +1,6 @@
 <html>
     <body>
-//üyenin kayıt tarihi de (üye onaylanınca) eklenecek
+        //üyenin kayıt tarihi de (üye onaylanınca) eklenecek
 
         <?php
         include("kayitForm.php");
@@ -60,7 +60,7 @@
         }
 # yukarda ayarlananları cıktı al
 # sonra variable ı yık
-        
+
         if (isset($error)) {
             echo $error;
             unset($error);

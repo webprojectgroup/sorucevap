@@ -3,7 +3,7 @@
 
 
         <form action="kullaniciKayit.php" method="post">
-            <p>Nickname:    <br />   <input type="text" name="uye_adi"  /></p>
+            <p>Nickname:    <br />   <input type="text" name="uye_adi" /></p>
             <p>Ad:          <br />   <input type="text" name="ad"  /></p>
             <p>Soyad:       <br />   <input type="text" name="soyad"  /></p>
             Seciniz:		<select name="rol_fk">

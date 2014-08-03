@@ -24,7 +24,7 @@ if (!$_SESSION['logged']) {
 
 //soru tablosuna
 //ekleyen_fk,soru_kategori_fk,zorluk_derecesi fk,soru tablosuna
-    
+
     $ekleyen_fk = $_SESSION['uye_id'];
     echo "ekleyen fk=" . $ekleyen_fk;
     $sql = mysqli_query($db_baglanti_durumu, "SELECT id , zorluk FROM zorluk_derecesi WHERE zorluk= '$zorluk' LIMIT 1");
