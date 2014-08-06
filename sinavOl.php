@@ -4,10 +4,11 @@ include("dbBaglan.php");
 
 
 /*
-$soruSayisi = $_POST['soruSayisi'];
-$zorluk = $_POST['zorluk'];
-$kategori = $_POST['kategori'];
-*/
+  $soruSayisi = $_POST['soruSayisi'];
+  $zorluk = $_POST['zorluk'];
+  $kategori = $_POST['kategori'];
+ */
+
 //süreyi zorluk derecesine , soru sayısına , kategorisine gore ayarlayacak fonksiyon
 // aldıgı tablonun o kolonundaki en büyük değeri dondürenfonksiyon
 //null donus engellenmeli
@@ -70,21 +71,30 @@ function rastgele_id($db_baglanti_degiskeni, $tablo_ismi, $kolon_ismi, $istenen_
                 $sayac = $sayac + 1;
                 array_push($rastgele_idler, $rastgele_sayi);
             }
-        } 
-        else {
+        } else {
             
         }
     }
 
     return $rastgele_idler;
 }
-/*
-foreach (rastgele_id($db_baglanti_durumu, "soru", "id", 3) as $value) {
-    echo " " . $value . " ";
-}
-*/
- 
+function shuffle_assoc(&$array) {
+        $keys = array_keys($array);
 
+        shuffle($keys);
+
+        foreach($keys as $key) {
+            $new[$key] = $array[$key];
+        }
+
+        $array = $new;
+
+        return true;
+    }
+
+foreach (rastgele_id($db_baglanti_durumu, "soru", "id", 3) as $value) {
+    soru_bas($db_baglanti_durumu, $value);
+}
 
 
 //yukarıdaki satır döngü silinip sorular ve şıklar rastgele_idler arrayine göre çekilip ekrana bssılacak
@@ -101,74 +111,49 @@ function soru_bas($db, $soru_id) {
 
     $sorgu2 = "SELECT id,dogru_mu,secenek FROM secenekler WHERE soru_fk='" . $soru_id . "' ORDER BY id";
     $sonuc2 = mysqli_query($db, $sorgu2);
+    $secenek_sayisi = mysqli_num_rows($sonuc2);
 
     $secenekler = array();
-    for ($i = 1; $i <= mysqli_num_rows($sonuc2); $i++) {
+    for ($i = 1; $i <= $secenek_sayisi; $i++) {
         //isset ile fetchin null dönmediğini kontrol et
         $secenek_satir = mysqli_fetch_array($sonuc2);
-        array_push($secenekler, $secenek_satir['secenek']);
+        $secenekler.=array([($i-1)]=>$secenek_satir["secenek"]);
+        
         if ($secenek_satir['dogru_mu']) {
-            $dogru_cevap = $secenek_satir['secenek'];
+            $dogru_cevap =$i;
         }
     }
-
-    shuffle($secenekler);
-
-    $sorgu3 = "SELECT AVG(begeni) FROM soru_puan WHERE soru_fk='" . $soru_id . "'";
-    $sonuc3 = mysqli_query($db, $sorgu3);
-    $begeni_satir = mysqli_fetch_array($sonuc3);
-    $begeni = ($begeni_satir[0] * 100);
+//id=>secenek
+    $secenekler_karma=shuffle_asoc($secenekler);
+    //print_r($secenekler);
     
-    
-    ?>
-<html>
-
-    <body>
-
-        <form method="post">
-            Soru Metni:<?php echo "soru= " . $soru; ?><br/>
+      $sorgu3 = "SELECT AVG(begeni) FROM soru_puan WHERE soru_fk='" . $soru_id . "'";
+      $sonuc3 = mysqli_query($db, $sorgu3);
+      $begeni_satir = mysqli_fetch_array($sonuc3);
+      $begeni = ($begeni_satir[0] * 100);
+      ?>
 
 
+      <form method="post">
+      Soru Metni:<?php echo "soru= " . $soru; ?><br/>
 
+<?php
+for ($c=1;$c<=$secenek_sayisi;$c++) { ?>
+      <input type="radio" name="dogru_mu" value=<?php if($secenekler_karma[($c-1)]==$secenekler_karma["$dogru_cevap"]){echo "1";} else{echo "0";} ?> /> <?php echo  $secenekler_karma[($c-1)]; ?> <br/>
+<?php } 
 
-            <input type="radio" name="sec" value=0 /><?php echo "A) " . $secenekler["0"]; ?> <br/>
+      echo "<br/> begeni=% " . $begeni;
+      ?> <br/>
 
+      <input type="submit" name="submit" value="Kaydet" />
+      </form>
+      
+      <?php
 
-            <input type="radio" name="sec" value=1 /><?php echo "B) " . $secenekler["1"]; ?> <br/>
-
-
-            <input type="radio" name="sec" value=2/><?php echo "C) " . $secenekler["2"]; ?>  <br/>
-
-
-            <input type="radio" name="sec" value=3 /><?php echo "D) " . $secenekler["3"]; ?> <br/>
-
-
-            <input type="radio" name="sec" value=4 /><?php echo "E) " . $secenekler["4"];
-
-
-echo "<br/> begeni=% " . $begeni;
-?> <br/>
-
-
-            <input type="submit" name="submit" value="Kaydet" />
-        </form>
-    </body>
-</html>
-
-
-
-<?php 
-if (strcmp((string) $secenekler[$_POST["sec"]], (string) $dogru_cevap) == 0) {//cevap do�ru ise
-    echo "dogru";
-}
-else {//cevap yanl�� ise
-    echo "yanlis";
-}
-        }
+      } 
 
 
 soru_bas($db_baglanti_durumu, 1);
-
 ?>
 
 
