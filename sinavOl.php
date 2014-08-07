@@ -92,14 +92,7 @@ function shuffle_assoc(&$array) {
         return true;
     }
 
-foreach (rastgele_id($db_baglanti_durumu, "soru", "id", 3) as $value) {
-    soru_bas($db_baglanti_durumu, $value);
-}
-
-
 //yukarıdaki satır döngü silinip sorular ve şıklar rastgele_idler arrayine göre çekilip ekrana bssılacak
-?>
-<?php
 
 function soru_bas($db, $soru_id) {
 
@@ -112,20 +105,24 @@ function soru_bas($db, $soru_id) {
     $sorgu2 = "SELECT id,dogru_mu,secenek FROM secenekler WHERE soru_fk='" . $soru_id . "' ORDER BY id";
     $sonuc2 = mysqli_query($db, $sorgu2);
     $secenek_sayisi = mysqli_num_rows($sonuc2);
-
     $secenekler = array();
     for ($i = 1; $i <= $secenek_sayisi; $i++) {
         //isset ile fetchin null dönmediğini kontrol et
         $secenek_satir = mysqli_fetch_array($sonuc2);
-        $secenekler.=array([($i-1)]=>$secenek_satir["secenek"]);
-        
+        array_push($secenekler,$secenek_satir["secenek"]);
         if ($secenek_satir['dogru_mu']) {
-            $dogru_cevap =$i;
+            $dogru_cevap =$secenek_satir["secenek"];
         }
     }
 //id=>secenek
-    $secenekler_karma=shuffle_asoc($secenekler);
-    //print_r($secenekler);
+    $secenekler_karma=$secenekler;//
+    //(array)shuffle_assoc($secenekler);
+    $indeks=0;
+    foreach ($secenekler_karma as $deger){
+        if(strcmp($deger, $dogru_cevap)){$yeni_dogru=$indeks;}
+        $indeks++;
+    }    
+//print_r($secenekler);
     
       $sorgu3 = "SELECT AVG(begeni) FROM soru_puan WHERE soru_fk='" . $soru_id . "'";
       $sonuc3 = mysqli_query($db, $sorgu3);
@@ -138,22 +135,32 @@ function soru_bas($db, $soru_id) {
       Soru Metni:<?php echo "soru= " . $soru; ?><br/>
 
 <?php
-for ($c=1;$c<=$secenek_sayisi;$c++) { ?>
-      <input type="radio" name="dogru_mu" value=<?php if($secenekler_karma[($c-1)]==$secenekler_karma["$dogru_cevap"]){echo "1";} else{echo "0";} ?> /> <?php echo  $secenekler_karma[($c-1)]; ?> <br/>
+for ($c=0;$c<$secenek_sayisi;$c++) { ?>
+      <input type="radio" name="dogru_mu" value=<?php if(($c)==$yeni_dogru){echo "1";} else{echo "0";} ?> /> <?php echo  $secenekler_karma[$c]; ?> <br/>
 <?php } 
 
       echo "<br/> begeni=% " . $begeni;
       ?> <br/>
 
-      <input type="submit" name="submit" value="Kaydet" />
-      </form>
       
+      
+
       <?php
 
       } 
+//sayfa sinav oluşturmak için sadece bu fonksiyonu çağıracak
+function haydi_sinava($db_baglanti_durumu){foreach (rastgele_id($db_baglanti_durumu, "soru", "id", 3) as $value) {
+    soru_bas($db_baglanti_durumu, $value);
+}
 
+?>
+<input type="submit" name="submit" value="Kaydet" />
+      </form>
+<?php
+}
+//soru_bas($db_baglanti_durumu, 1);
+haydi_sinava($db_baglanti_durumu);
 
-soru_bas($db_baglanti_durumu, 1);
 ?>
 
 

@@ -77,8 +77,6 @@ function soru_duzenle($db, $soru_id) {
     } ?> >onaylandi</option>
     </select>
 
-    <input type = "submit" name = "submit" value = "Kaydet" />
-    </form>
     <?php
     /*
 
@@ -184,10 +182,7 @@ function uye_duzenle($db, $uye_id) {
 
             </select></p>
 
-        <p><input type = "submit" name = "submit" value = "Kaydet" /></p>
 
-
-    </form >
     <?php
     if ($_POST) {
         //echo "<br/>uyeadi ".$_POST["uye_adi"] ."<br/>ad ".$_POST["ad"]."<br/>soyad ".$_POST["soyad"]."<br/>rol_fk ".$_POST["rol_fk"]."<br/>eposta ".$_POST["eposta"]."<br/>cep_tel ".$_POST["cep_tel"]."<br/>dogum tarihi ".$_POST["dogum_tarihi"];
@@ -219,9 +214,28 @@ function uye_duzenle($db, $uye_id) {
 //foreach(yeni_eklenen_sorular($db_baglanti_durumu) as $yeni_soru_id){
 //  soru_duzenle($db_baglanti_durumu, $yeni_soru_id);
 //}
+//sayfa yeni eklenen uyeler için sadece  bu fonksiuyonu cagıracak 
+function yeni_uyeleri_onayla($db_baglanti_durumu){
 foreach (yeni_eklenen_uyeler($db_baglanti_durumu) as $yeni_uye_id) {
-    uye_duzenle($db_baglanti_durumu, $yeni_uye_id);
+    uye_duzenle($db_baglanti_durumu, $yeni_uye_id);          
 }
 ?>
+ <p><input type = "submit" name = "uyelertamam" value = "Kaydet" /><br/></p>
 
+
+    </form ><?php } 
+//sayfa yeni sorular uyeler için sadece  bu fonksiuyonu cagıracak 
+    function yeni_sorulari_onayla($db_baglanti_durumu){
+foreach (yeni_eklenen_sorular($db_baglanti_durumu) as $yeni_soru_id) {
+    soru_duzenle($db_baglanti_durumu, $yeni_soru_id);    echo "<br/>";      
+}
+?>
+    <p><input type = "submit" name = "sorulartamam" value = "Kaydet" /><br/></p>
+
+
+    </form ><?php }yeni_sorulari_onayla($db_baglanti_durumu) ?>
+    
+    
+    
+    
 
