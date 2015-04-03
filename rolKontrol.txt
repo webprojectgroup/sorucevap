@@ -1,5 +1,0 @@
-//gerekli islem icin kullanici yetkilerini kontrol etme
-            //soruları düzenleme işlemi
-            //üye bilgilerini değiştirme
-
-//yetkilere göre gelecek sayfayı (sıradan uye , editör ya da admin paneli) ayarlama
